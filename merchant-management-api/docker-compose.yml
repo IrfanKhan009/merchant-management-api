@@ -1,0 +1,14 @@
+services:
+  api:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      # No defaults on purpose: set these in .env (see .env.example).
+      Jwt__Key: ${JWT_KEY:?set JWT_KEY in .env}
+      Bootstrap__AdminEmail: ${BOOTSTRAP_ADMIN_EMAIL:?set BOOTSTRAP_ADMIN_EMAIL in .env}
+      Bootstrap__AdminPassword: ${BOOTSTRAP_ADMIN_PASSWORD:?set BOOTSTRAP_ADMIN_PASSWORD in .env}
+    volumes:
+      - merchant-data:/data
+volumes:
+  merchant-data:
